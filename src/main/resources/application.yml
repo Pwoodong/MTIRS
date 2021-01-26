@@ -1,0 +1,18 @@
+server:
+  port: 18080
+
+spring:
+  application:
+    name: MTIRS
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  data:
+    mongodb:
+      uri: mongodb://admin:123456@192.168.1.120/admin
+#      host: 192.168.1.120
+#      port: 27017
+#      database: admin
+#      username: admin
+#      password: 123456

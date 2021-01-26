@@ -9,7 +9,7 @@ import java.util.HashMap;
 /**
  * Package com.pbh.common.utils
  * ClassName AipImageClassifyUtils.java
- * Description
+ * Description baidubce图片处理工具类
  *
  * @author Liaoyj
  * @version V1.0

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运动轨迹图像识别统计</title>
+    <link rel="stylesheet" href="ace/css/dropzone.min.css"/>
+    <style>
+        .show_box {
+            border-width: 2px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.3);
+            border-image: initial;
+            background: white;
+            padding: 0px;
+            min-height: 150px;
+            max-height: 300px;
+            _height: 150px;
+            margin-left: auto;
+            margin-right: auto;
+            outline: 0;
+            font-size: 12px;
+            word-wrap: break-word;
+            overflow-x: hidden;
+            overflow-y: auto;
+            _overflow-y: visible;
+        }
+    </style>
+</head>
+<body>
+<div class="col-xs-12">
+    <div class="dropzone well" id="uploadDiv"></div>
+</div>
+
+<div>内容：</div>
+<div id="resultBox" class="show_box" contenteditable="true"><br /></div>
+
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script src="ace/js/dropzone.min.js"></script>
+<script type="text/javascript">
+    Dropzone.autoDiscover = false;
+    $("#uploadDiv").dropzone({
+        url: "/identify/upload",
+        thumbnailHeight: 120,
+        thumbnailWidth: 120,
+        maxFilesize: 1024,
+        addRemoveLinks: true,
+        dictRemoveFile: "删除",
+        acceptedFiles: ".zip",
+        dictFileTooBig: "上传文件过大",
+        dictDefaultMessage: "<span class='bigger-150 bolder'><i class='ace-icon fa fa-caret-right red'></i>拖动文件</span>上传<span class='smaller-80 grey'>(或点击)</span><br/><i class='upload-icon ace-icon fa fa-cloud-upload blue fa-3x'></i>",
+        init: function () {
+            this.on("removedfile", function (data) {
+                data = eval('(' + data.xhr.responseText + ')');
+                console.log(data);
+                $("#resultBox").html("");
+                /*$.ajax({
+                    type: "get",
+                    url: "delete",
+                    data: {id: data.id},
+                    success: function () {
+
+                    }
+                });*/
+            });
+            this.on('success', function (files, response) {
+                //文件上传成功之后的操作
+                console.log('ok');
+                $("#resultBox").html("");
+                $("#resultBox").append(response);
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
