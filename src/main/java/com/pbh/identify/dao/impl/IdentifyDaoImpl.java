@@ -3,6 +3,7 @@ package com.pbh.identify.dao.impl;
 import com.pbh.identify.dao.IdentifyDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -27,6 +28,12 @@ public class IdentifyDaoImpl implements IdentifyDao {
     @Override
     public Collection<Map<String, Object>> insertCollection(List<Map<String,Object>> list) throws Exception{
         return mongoTemplate.insert(list,Map.class);
+    }
+
+    @Override
+    public List<Map> selectCollection() throws Exception{
+        Query query = new Query();
+        return mongoTemplate.find(query,Map.class,"map");
     }
 
 }

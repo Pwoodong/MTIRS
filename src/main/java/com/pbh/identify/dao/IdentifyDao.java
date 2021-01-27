@@ -17,4 +17,6 @@ public interface IdentifyDao {
 
     Collection<Map<String, Object>> insertCollection(List<Map<String,Object>> list) throws Exception;
 
+    List<Map> selectCollection() throws Exception;
+
 }

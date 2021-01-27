@@ -37,4 +37,10 @@ public class IdentifyController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PostMapping("getData")
+    public ResponseEntity<Object> getData(){
+        identifyService.getData();
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
 }

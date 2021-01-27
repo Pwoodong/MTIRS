@@ -23,4 +23,10 @@ public interface IdentifyService {
      **/
     int upload(MultipartFile file);
 
+    /**
+     * 查询数据
+     * @param
+     * @return   void
+     **/
+    void getData();
 }

@@ -1,6 +1,7 @@
 package com.pbh.identify.service.impl;
 
 import com.pbh.identify.dao.IdentifyDao;
+import com.pbh.identify.mapper.RunnerOnlineMapper;
 import com.pbh.identify.service.IdentifyService;
 import com.pbh.identify.service.OcrService;
 import com.pbh.identify.utils.ZipUtil;
@@ -31,6 +32,9 @@ public class IdentifyServiceImpl implements IdentifyService {
     @Autowired
     private IdentifyDao identifyDao;
 
+    @Autowired
+    private RunnerOnlineMapper runnerOnlineMapper;
+
     /**
      * @see IdentifyService#upload(MultipartFile)
      */
@@ -60,6 +64,18 @@ public class IdentifyServiceImpl implements IdentifyService {
             log.error("上传图片文件识别出现异常."+e.getMessage());
         }
         return count;
+    }
+
+    @Override
+    public void getData() {
+        try {
+            List<Map> result = identifyDao.selectCollection();
+            System.out.println(result);
+            List<Map<String,Object>> runnerList = runnerOnlineMapper.selectRunnerOnline();
+            System.out.println(runnerList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

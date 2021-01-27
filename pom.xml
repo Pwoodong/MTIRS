@@ -14,9 +14,31 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
+        <velocity.version>1.7</velocity.version>
+        <activiti.version>5.22.0</activiti.version>
+        <swagger.version>2.9.2</swagger.version>
+        <druid.version>1.1.21</druid.version>
+        <hutool.version>5.4.0</hutool.version>
+        <ojdbc6.version>11.2.0</ojdbc6.version>
+        <mybatis.version>3.4.4</mybatis.version>
+        <mybatis.spring.boot.version>1.1.1</mybatis.spring.boot.version>
+        <mybatis.plus.boot.starter.version>2.1.9</mybatis.plus.boot.starter.version>
+        <commons.lang3.version>3.6</commons.lang3.version>
+        <commons.configuration.version>1.10</commons.configuration.version>
+        <commons.io.version>2.5</commons.io.version>
+        <commons.net.version>3.2</commons.net.version>
+        <jsoup.version>1.9.2</jsoup.version>
     </properties>
     <dependencies>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -75,6 +97,43 @@
             <groupId>com.baidu.aip</groupId>
             <artifactId>java-sdk</artifactId>
             <version>4.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.2.1.RELEASE</version>
+        </dependency>
+
+        <!--mybatis -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis.spring.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis.plus.boot.starter.version}</version>
+        </dependency>
+        <!--druid-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
         </dependency>
 
     </dependencies>
