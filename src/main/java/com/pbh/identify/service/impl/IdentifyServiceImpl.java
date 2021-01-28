@@ -1,6 +1,9 @@
 package com.pbh.identify.service.impl;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pbh.identify.dao.IdentifyDao;
+import com.pbh.identify.entity.RunnerOnline;
 import com.pbh.identify.mapper.RunnerOnlineMapper;
 import com.pbh.identify.service.IdentifyService;
 import com.pbh.identify.service.OcrService;
@@ -69,10 +72,33 @@ public class IdentifyServiceImpl implements IdentifyService {
     @Override
     public void getData() {
         try {
-            List<Map> result = identifyDao.selectCollection();
-            System.out.println(result);
-            List<Map<String,Object>> runnerList = runnerOnlineMapper.selectRunnerOnline();
+            List<Map> collectionList = identifyDao.selectCollection();
+            List<RunnerOnline> runnerList = runnerOnlineMapper.selectRunnerOnline();
             System.out.println(runnerList);
+            for(Map map:collectionList){
+                for(RunnerOnline runnerOnline : runnerList){
+                    String content = map.get("content").toString();
+                    ObjectMapper mapper = new ObjectMapper();
+                    List<Map> lst = mapper.readValue(content, new TypeReference<List<Map>>() {});
+                    boolean flag = false;
+                    for(int i = 0; i < lst.size();i++){
+                        Map lMap = lst.get(i);
+                        if(runnerOnline.getNick().equals(lMap.get("words").toString().trim())){
+                            System.out.println(runnerOnline.getNick() +","+ lMap.get("words"));
+                            flag = true;
+                        }
+                    }
+                    if(flag){
+                        for(int i = 0; i < lst.size();i++){
+                            Map lMap = lst.get(i);
+                            if(lMap.get("words").toString().trim().indexOf(runnerOnline.getKeyword2()) != -1){
+                                int index = Integer.valueOf(runnerOnline.getKeyword2index());
+                                System.out.println(runnerOnline.getKeyword2() + ":" + lst.get(i-index).get("words"));
+                            }
+                        }
+                    }
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

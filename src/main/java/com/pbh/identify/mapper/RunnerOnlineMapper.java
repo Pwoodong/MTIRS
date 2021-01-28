@@ -2,6 +2,7 @@ package com.pbh.identify.mapper;
 
 import com.pbh.identify.config.datasource.annotation.TargetDataSource;
 import com.pbh.identify.config.datasource.common.DataSourceKey;
+import com.pbh.identify.entity.RunnerOnline;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,6 +25,6 @@ public interface RunnerOnlineMapper {
      * @return      List
      **/
     @TargetDataSource(dataSourceKey = DataSourceKey.DB_MYSQL)
-    List<Map<String,Object>> selectRunnerOnline();
+    List<RunnerOnline> selectRunnerOnline();
 
 }
